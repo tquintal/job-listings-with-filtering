@@ -3,16 +3,33 @@ import Image from "next/image";
 import { api } from "~/utils/api";
 import header from "../../public/bg-header-desktop.svg";
 
+function formatDateDistance(dateString: string): string {
+  const date = new Date(dateString);
+  const now = new Date();
+  const differenceInDays = Math.floor(
+    (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  if (differenceInDays === 1) {
+    return "1d ago";
+  } else if (differenceInDays === 0) {
+    return "Today";
+  } else {
+    return `${differenceInDays}d ago`;
+  }
+}
+
 export default function Home() {
-  const { data: jobListings, isLoading } = api.job.getJobs.useQuery([], {
+  const { data: jobListings } = api.job.getJobs.useQuery([], {
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   });
 
   console.clear();
-  console.log(isLoading, jobListings);
-
-  if (!jobListings) return <></>;
+  console.log(jobListings);
+  console.log(
+    jobListings?.map((job) => formatDateDistance(job.date.toString())),
+  );
 
   return (
     <>
@@ -25,10 +42,10 @@ export default function Home() {
         <div className="bg-[#5da5a4]">
           <Image src={header} alt="header" />
         </div>
-        {jobListings.map((job) => (
+        {jobListings?.map((job) => (
           <div
             key={job.id}
-            className="m-10 flex h-36 items-center rounded-md border-l-4 border-[#5da5a4] bg-white p-14 shadow-lg"
+            className={`${formatDateDistance(job.date.toString()) === "1d ago" ? "border-l-4 border-[#5da5a4]" : ""} m-10 flex h-36 items-center rounded-md bg-white p-14 shadow-lg`}
           >
             <div className="flex w-full gap-8">
               <div className="h-16 w-16 rounded-full bg-[#2C3A3A]" />
@@ -38,12 +55,16 @@ export default function Home() {
                     {job.companyName}
                   </span>
                   <div className="flex gap-2">
-                    <span className="h-fit rounded-full bg-[#5da5a4] p-1 pl-2 pr-2 pt-[6px] text-xs font-semibold leading-none text-white">
-                      NEW!
-                    </span>
-                    <span className="h-fit rounded-full bg-[#2C3A3A] p-1 pl-2 pr-2 pt-[6px] text-xs font-semibold leading-none text-white">
-                      FEATURED!
-                    </span>
+                    {formatDateDistance(job.date.toString()) === "1d ago" && (
+                      <span className="h-fit rounded-full bg-[#5da5a4] p-1 pl-2 pr-2 pt-[6px] text-xs font-semibold leading-none text-white">
+                        NEW!
+                      </span>
+                    )}
+                    {job.featured && (
+                      <span className="h-fit rounded-full bg-[#2C3A3A] p-1 pl-2 pr-2 pt-[6px] text-xs font-semibold leading-none text-white">
+                        FEATURED!
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
@@ -63,7 +84,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="font-semibold text-[#7B8E8E]">
-                    {job.date.toDateString()}
+                    {formatDateDistance(job.date.toString())}
                   </span>
                   <div className="h-1 w-1 rounded-full bg-[#7B8E8E]" />
                   <span className="font-semibold text-[#7B8E8E]">
