@@ -48,7 +48,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-lg font-bold text-[#2C3A3A]">
-                    Senior Frontend Developer
+                    {job.roleName}
                   </span>
                   <div className="flex gap-4">
                     {job.tags?.map((tag) => (
