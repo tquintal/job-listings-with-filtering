@@ -10,6 +10,8 @@ export const formatDateDistance = (dateString: string): string => {
     12 * (now.getFullYear() - date.getFullYear());
   const differenceInYears = now.getFullYear() - date.getFullYear();
 
+  if (differenceInDays === 0) return "Today";
+
   if (differenceInDays < 30) {
     return `${differenceInDays}d ago`;
   } else if (differenceInMonths < 12) {

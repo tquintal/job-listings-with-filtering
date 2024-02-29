@@ -1,12 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
+import Filter from "~/components/Filter";
+import Header from "~/components/Header";
+import JobCard from "~/components/JobCard";
+import { type Tag } from "~/types/types";
 import { api } from "~/utils/api";
-import { formatDateDistance } from "~/utils/utils";
-
-import header from "../../public/bg-header-desktop.svg";
-
-import type { Tag } from "@prisma/client";
 
 export default function Home() {
   const [filter, setFilter] = useState<Tag[] | null>();
@@ -29,100 +27,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <main className="relative flex flex-col items-center">
-        <div className="mb-12 flex h-40 w-full justify-center bg-[#5da5a4]">
-          <Image
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            src={header}
-            alt="header"
-            layout="responsive"
-            objectFit="cover"
-            objectPosition="top"
-          />
-        </div>
+        <Header />
         <div
           className={`absolute top-32 flex w-full max-w-[1440px] flex-col items-center gap-6 pb-12 max-2xl:pl-14 max-2xl:pr-14 max-lg:gap-12 max-lg:pl-6 max-lg:pr-6 ${filter ? "" : "mt-16"}`}
         >
-          {filter && (
-            <div className="flex items-center justify-between gap-3 rounded-md bg-white p-6 shadow-lg lg:w-1/2">
-              <div className="flex flex-wrap gap-3">
-                {filter?.map((el) => (
-                  <div key={el.id} className="flex">
-                    <div className="w-fit rounded-md rounded-r-none bg-[#EEF6F6] p-3 pb-1 pt-[6px] font-bold text-[#5da5a4]">
-                      {el.name}
-                    </div>
-                    <div className="flex w-8 items-center justify-center rounded-r-md bg-[#5da5a4] font-bold text-white">
-                      X
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <span
-                onClick={() => setFilter(null)}
-                className="cursor-pointer font-bold text-[#5da5a4] underline"
-              >
-                Clear
-              </span>
-            </div>
-          )}
+          {filter && <Filter filter={filter} setFilter={setFilter} />}
           {jobListings?.map((job) => (
-            <div
+            <JobCard
               key={job.id}
-              className={`${formatDateDistance(job.date.toString()) === "1d ago" ? "border-l-[5px] border-[#5da5a4]" : ""} relative flex w-full items-center rounded-md bg-white shadow-lg max-lg:p-6 lg:h-36 lg:p-8`}
-            >
-              <div className="flex w-full items-center">
-                <div className="flex w-full justify-between max-lg:flex-col max-lg:gap-4 lg:items-center">
-                  <div className="flex items-center gap-6">
-                    <div className="h-14 w-14 rounded-full border border-red-500 max-lg:absolute max-lg:-top-7" />
-                    <div className="flex flex-col gap-1 max-lg:gap-2 max-lg:pt-4">
-                      <div className="flex gap-4">
-                        <span className="font-bold text-[#5da5a4]">
-                          {job.companyName}
-                        </span>
-                        <div className="flex gap-2">
-                          {formatDateDistance(job.date.toString()) ===
-                            "1d ago" && (
-                            <span className="h-fit rounded-full bg-[#5da5a4] p-1 pl-2 pr-2 pt-[7px] text-xs font-semibold leading-none text-white">
-                              NEW!
-                            </span>
-                          )}
-                          {job.featured && (
-                            <span className="h-fit rounded-full bg-[#2C3A3A] p-1 pl-2 pr-2 pt-[7px] text-xs font-semibold leading-none text-white">
-                              FEATURED
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <span className="text-lg font-bold text-[#2C3A3A]">
-                        {job.roleName}
-                      </span>
-                      <div className="flex items-center gap-4">
-                        <span className="text-[#7B8E8E]">
-                          {formatDateDistance(job.date.toString())}
-                        </span>
-                        <div className="h-1 w-1 rounded-full bg-[#7B8E8E]" />
-                        <span className="text-[#7B8E8E]">
-                          {job.contractType}
-                        </span>
-                        <div className="h-1 w-1 rounded-full bg-[#7B8E8E]" />
-                        <span className="text-[#7B8E8E]">{job.location}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="h-[1px] w-full bg-[#9fb8b8] lg:hidden" />
-                  <div className="flex flex-wrap gap-4">
-                    {job.tags?.map((tag) => (
-                      <span
-                        key={tag.id}
-                        onClick={() => addFilterHandler(tag)}
-                        className="cursor-pointer rounded-md bg-[#EEF6F6] p-3 pb-1 pt-[6px] font-bold text-[#5da5a4]"
-                      >
-                        {tag.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+              job={job}
+              addFilterHandler={(tag) => addFilterHandler(tag)}
+            />
           ))}
         </div>
       </main>
