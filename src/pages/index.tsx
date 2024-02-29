@@ -19,6 +19,16 @@ export default function Home() {
     });
   };
 
+  const removeFilterHandler = (tag: Tag) => {
+    if (filter?.length === 1) setFilter(null);
+    if (filter?.find((val) => val.id === tag.id)) {
+      setFilter((prev) => {
+        if (prev) return [...prev.filter((el) => el.id !== tag.id)];
+      });
+    }
+    return;
+  };
+
   return (
     <>
       <Head>
@@ -31,7 +41,16 @@ export default function Home() {
         <div
           className={`absolute top-32 flex w-full max-w-[1440px] flex-col items-center gap-6 pb-12 max-2xl:pl-14 max-2xl:pr-14 max-lg:gap-12 max-lg:pl-6 max-lg:pr-6 ${filter ? "" : "mt-16"}`}
         >
-          {filter && <Filter filter={filter} setFilter={setFilter} />}
+          {filter && (
+            <Filter
+              filter={filter}
+              setFilter={setFilter}
+              removeFilterHandler={removeFilterHandler}
+            />
+          )}
+          {!jobListings && (
+            <span className="animate-pulse text-[#5da5a4]">Loading...</span>
+          )}
           {jobListings?.map((job) => (
             <JobCard
               key={job.id}
