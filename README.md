@@ -10,7 +10,7 @@ The goal of this challenge was to develop my front-end skills by implementing a 
 
 ## Demo
 
-You can view a live demo of my project [here](https://link.com/).
+You can view a live demo of my project [here](https://job-listings-with-filtering-tquintal.vercel.app/).
 
 ## Screenshots
 
