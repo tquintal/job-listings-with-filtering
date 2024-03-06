@@ -58,6 +58,18 @@ export default function Home() {
               addFilterHandler={(tag) => addFilterHandler(tag)}
             />
           ))}
+          <div className="pt-8 text-[#5da5a4]">
+            <a
+              href="https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt"
+              target="_blank"
+            >
+              Challenge by Frontend Mentor.
+            </a>
+            <span> </span>
+            <a href="https://github.com/tquintal/" target="_blank">
+              Coded by Tomás Quintal.
+            </a>
+          </div>
         </div>
       </main>
     </>

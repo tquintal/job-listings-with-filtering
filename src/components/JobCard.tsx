@@ -10,7 +10,7 @@ interface Props {
 const JobCard = ({ job, addFilterHandler }: Props) => {
   return (
     <div
-      className={`${formatDateDistance(job.date.toString()) === "1d ago" ? "border-l-[5px] border-[#5da5a4]" : ""} relative flex w-full items-center rounded-md bg-white shadow-lg max-lg:p-6 lg:h-36 lg:p-8`}
+      className={`${formatDateDistance(job.date.toString()) === "1d ago" ? "border-l-[5px] border-[#5da5a4]" : ""} relative flex w-full items-center rounded-md bg-white shadow-lg max-lg:mt-8 max-lg:p-6 lg:h-36 lg:p-8`}
     >
       <div className="flex w-full items-center">
         <div className="flex w-full justify-between max-lg:flex-col max-lg:gap-4 lg:items-center">

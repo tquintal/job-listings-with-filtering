@@ -1,29 +1,23 @@
-# Create T3 App
+# Frontend Mentor Challenge: Job listings with filtering
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Difficulty: <span style="border: 1px solid rgb(241, 182, 4); border-radius: 0.5rem; display: inline-flex; -webkit-box-pack: center; justify-content: center; overflow: hidden;"><span style="padding: 0rem 0.75rem;background-color: rgb(241, 182, 4); color: rgb(255, 255, 255); font-family: Barlow, sans-serif; font-weight: 700; line-height: 1.5; margin: 0px;">3</span><span style="padding: 0rem 0.75rem;background-color: transparent; color: rgb(241, 182, 4); font-family: Barlow, sans-serif; font-weight: 700; line-height: 1.5; margin: 0px; text-transform: uppercase;">intermediate</span></span>
 
-## What's next? How do I make an app with this?
+This is my project for the Job listings with filtering challenge from Frontend Mentor. The challenge was to create a responsive web page based on the provided design.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Overview
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+The goal of this challenge was to develop my front-end skills by implementing a provided web page design using HTML, CSS, and possibly JavaScript. I decided to approach this challenge using **NextJS, React, TailwindCSS, tRPC, Prisma, Typescript, and Planetscale** for a more dynamic approach with a small backend.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Demo
 
-## Learn More
+You can view a live demo of my project [here](https://link.com/).
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Screenshots
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+![Screenshot Desktop](screenshot-desktop.png)
+![Screenshot Mobile](screenshot-mobile.png)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Resources
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- [Challenge Design](/design)
+- [Challenge Specifications](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt)
