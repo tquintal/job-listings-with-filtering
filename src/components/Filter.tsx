@@ -13,12 +13,12 @@ const Filter = ({ filter, removeFilterHandler, setFilter }: Props) => {
       <div className="flex flex-wrap gap-3">
         {filter?.map((el) => (
           <div key={el.id} className="flex">
-            <div className="w-fit rounded-md rounded-r-none bg-[#EEF6F6] p-3 pb-1 pt-[6px] font-bold text-[#5da5a4]">
+            <div className="w-fit rounded-md rounded-r-none bg-[#EEF6F6] p-3 pb-1 pt-[6px] font-semibold text-[#5da5a4]">
               {el.name}
             </div>
             <div
               onClick={() => removeFilterHandler(el)}
-              className="flex w-8 cursor-pointer items-center justify-center rounded-r-md bg-[#5da5a4] font-bold text-white"
+              className="flex w-8 cursor-pointer items-center justify-center rounded-r-md bg-[#5da5a4] pt-1 font-bold text-white transition-all hover:bg-[#2C3A3A]"
             >
               X
             </div>

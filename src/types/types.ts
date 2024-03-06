@@ -7,7 +7,7 @@ const Tag = z.object({
 
 const JobOffer = z.object({
   id: z.number().int().positive(),
-  photo: z.string(),
+  photo: z.string().nullish(),
   companyName: z.string(),
   roleName: z.string(),
   contractType: z.string(),

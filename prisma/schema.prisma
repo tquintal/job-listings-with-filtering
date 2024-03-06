@@ -4,26 +4,34 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-  // Do not use foreign keys (PlanetScale does not support them)
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model JobOffer {
   id           Int      @id @default(autoincrement())
-  photo        String   @map("photo")
+  photo        String?  @map("photo") @db.Text
   companyName  String   @map("company_name")
   roleName     String   @map("role_name")
   contractType String   @map("contract_type")
   location     String
   date         DateTime @default(now())
   featured     Boolean
-  tags         Tag[]  @relation("JobOfferToSkill")
+  tags         Tag[]    @relation("JobOfferToSkill")
 }
 
 model Tag {
   id        Int        @id @default(autoincrement())
   name      String
   jobOffers JobOffer[] @relation("JobOfferToSkill")
+}
+
+model JobOfferToSkill {
+  A Int
+  B Int
+
+  @@unique([A, B], map: "_JobOfferToSkill_AB_unique")
+  @@index([B], map: "_JobOfferToSkill_B_index")
+  @@map("_JobOfferToSkill")
 }
