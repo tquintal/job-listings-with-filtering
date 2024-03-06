@@ -11,21 +11,21 @@ const Tag = z
   .nullish();
 
 export const jobRouter = createTRPCRouter({
-  getJobs: publicProcedure.input(Tag).query(({ ctx, input }) => {
-    const filterTags = input;
+  getJobs: publicProcedure.input(Tag).query(async ({ ctx, input }) => {
+    const filterTags = input ?? [];
 
-    return ctx.db.jobOffer.findMany({
-      orderBy: { date: "desc" },
+    return await ctx.db.jobOffer.findMany({
       include: { tags: true },
       where: {
-        tags: {
-          some: {
-            id: {
-              in: filterTags?.map((tag) => tag.id),
+        AND: filterTags.map((tag) => ({
+          tags: {
+            some: {
+              id: tag.id,
             },
           },
-        },
+        })),
       },
+      orderBy: { date: "desc" },
     });
   }),
 });
