@@ -1,5 +1,6 @@
 import { formatDateDistance } from "~/utils/utils";
 import { type Tag, type JobOffer } from "../types/types";
+import Image from "next/image";
 
 interface Props {
   job: JobOffer;
@@ -14,7 +15,15 @@ const JobCard = ({ job, addFilterHandler }: Props) => {
       <div className="flex w-full items-center">
         <div className="flex w-full justify-between max-lg:flex-col max-lg:gap-4 lg:items-center">
           <div className="flex items-center gap-6">
-            <div className="h-14 w-14 rounded-full border border-red-500 max-lg:absolute max-lg:-top-7" />
+            {job.photo && (
+              <Image
+                src={`data:image/svg+xml;base64,${job.photo}`}
+                alt="company-logo"
+                width={66}
+                height={66}
+                className="max-lg:absolute max-lg:-top-8"
+              />
+            )}
             <div className="flex flex-col gap-1 max-lg:gap-2 max-lg:pt-4">
               <div className="flex gap-4">
                 <span className="font-bold text-[#5da5a4]">
