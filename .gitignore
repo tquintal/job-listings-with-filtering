@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+pscale_dump_job-listings-with-filtering_main
+
 # dependencies
 /node_modules
 /.pnp

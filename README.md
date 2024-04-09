@@ -4,7 +4,7 @@ This is my project for the Job listings with filtering challenge from Frontend M
 
 ## Overview
 
-The goal of this challenge was to develop my front-end skills by implementing a provided web page design using HTML, CSS, and possibly JavaScript. I decided to approach this challenge using **NextJS, React, TailwindCSS, tRPC, Prisma, Typescript, and Planetscale** for a more dynamic approach with a small backend.
+The goal of this challenge was to develop my front-end skills by implementing a provided web page design using HTML, CSS, and possibly JavaScript. I decided to approach this challenge using **NextJS, React, TailwindCSS, tRPC, Prisma, Typescript, and Railway** for a more dynamic approach with a small backend.
 
 ## Demo
 
